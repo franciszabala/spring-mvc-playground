@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- 
+    <bean id ="sampleService" class="com.example.SampleServiceImpl"> 
+    	<property name ="sampleDao" ref="sampleDao" />
+    </bean> 
+	<bean id ="sampleService" class="com.example.SampleServiceImpl" autowire="byName" />
+     -->
+     
+     <!-- <bean id ="sampleDao" class="com.example.SampleDaoImpl"/> -->
+     
+     <context:component-scan 
+     		base-package="com.example"
+     		use-default-filters="true">
+     </context:component-scan>
+     
+     
+     <context:annotation-config />
+    
+</beans>
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/beans/context
+    http://www.springframework.org/schema/beans/spring-context.xsd">
+     --> 
