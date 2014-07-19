@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloWorldController {
@@ -14,11 +16,25 @@ public class HelloWorldController {
 		return "destination";
 	}
 	
-//	@RequestMapping (value="/login", method=RequestMethod.GET)
-//	public String setupLogin(Model model) {
-//		LoginFromBean formBean = new LoginFromBean();
-//		
-//	}
+	@RequestMapping (value="/loginWithBean", method=RequestMethod.GET)
+	public String setupLoginUsingBean(Model model) {
+		LoginFormBean formBean = new LoginFormBean();
+		
+		formBean.getUserLogin().setUsername("default username");
+		//send copy of login bean to the form
+		model.addAttribute("loginBackingBean",formBean);
+		return "login";
+		
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String processLogin(
+			LoginFormBean loginFormData,
+			Model model) {
+		model.addAttribute("message", loginFormData.getUserLogin().getUsername());
+		return "destination";
+	}
+	
 	
 //	@RequestMapping (value="/sampleParameterOnUrl/{samparam}")
 //	public String sampleParameterOnUrl {
@@ -35,5 +51,19 @@ public class HelloWorldController {
 		return "destination";
 	}
 	
+	@RequestMapping(value="/login", method=RequestMethod.GET) 
+	public String setupLogin(Model model) {
+		return "login";
+	}
+	
+	@RequestMapping(value="/loginNormal", method=RequestMethod.POST)
+	public String normalLogin(
+				@RequestParam(value="username") String username,
+				@RequestParam(value="password") String password,
+				Model model) {
+		model.addAttribute("message", username);
+		
+		return "destination";
+	}
 
 }
