@@ -1,8 +1,12 @@
 
 package com.example.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +30,38 @@ public class HelloWorldController {
 		return "login";
 		
 	}
+	
+	@RequestMapping (value="/login2", method=RequestMethod.GET)
+	public String setupLoginUsingBean2(Model model) {
+		FormBeanValidator formBean = new FormBeanValidator();
+		
+		formBean.setUsername("default username new");
+		//send copy of login bean to the form
+		model.addAttribute("arbitaryBeanName",formBean);
+		return "login2";
+		
+	}
+	
+	@RequestMapping(value="/login2", method=RequestMethod.POST)
+	public String processLoginValidator(
+			@ModelAttribute("arbitaryBeanName") @Valid FormBeanValidator loginFormData, 
+			BindingResult result,
+			Model model)
+			{
+		
+		//BindingResult first 
+		//then the Model
+				if(result.hasErrors()) {
+					System.out.println("I haz errors");
+					return "login2";
+				} else {
+					System.out.println("This is not error");
+				}
+		
+				model.addAttribute("message", loginFormData.getUsername());
+				return "destination";
+				
+			}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String processLogin(
@@ -65,5 +101,7 @@ public class HelloWorldController {
 		
 		return "destination";
 	}
+	
+	
 
 }

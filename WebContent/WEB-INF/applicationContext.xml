@@ -21,6 +21,9 @@
      		use-default-filters="true">
      </context:component-scan>
      
+     <bean id="validator"
+     	class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+     
      
      <context:annotation-config />
     
