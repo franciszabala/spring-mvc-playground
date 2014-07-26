@@ -13,9 +13,9 @@ public class ThirdController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/home")
+	@RequestMapping(value="/home2")
 	public String testMethodForJdbcTemplate(Model model) {
-		UserObj user = userService.getUser("sherwin");
+		UserObj user = userService.getUser("Procopio");
 		model.addAttribute("message", user.getUsername());
 		return "destination";
 	}

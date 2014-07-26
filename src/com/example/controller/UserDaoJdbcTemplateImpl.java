@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository("userDao")
 public class UserDaoJdbcTemplateImpl implements UserDao{
 	
-	private static final String SAMPLE_SELECT = "select id, name from sample";
-	private static final String SAMPLE_BY_ID_SELECT = SAMPLE_SELECT + "where id=?";
+	private static final String SAMPLE_SELECT = "select id, username, password from user ";
+	private static final String SAMPLE_BY_ID_SELECT = SAMPLE_SELECT + " where username=?";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -29,9 +29,9 @@ public class UserDaoJdbcTemplateImpl implements UserDao{
 					public Object mapRow (ResultSet rs, int rowNum) throws
 						SQLException, DataAccessException {
 						 UserObj userObj = new UserObj();
-						 userObj.setId(rs.getLong(0));
-						 userObj.setUsername(rs.getString(1));
-						 userObj.setPassword(rs.getString(2));
+						 userObj.setId(rs.getLong(1));
+						 userObj.setUsername(rs.getString(2));
+						 userObj.setPassword(rs.getString(3));
 						 return userObj;
 					}
 		});
