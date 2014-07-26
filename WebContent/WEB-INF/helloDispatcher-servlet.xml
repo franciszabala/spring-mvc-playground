@@ -49,9 +49,6 @@
            			<value>messages</value>
            		</list>
            	</property>
-           	<property name="usesCodeAsDefaultMessage" value="false" />
-           	<property name="defaultEncoding" value="UTF-8" />
-           	<property name="fallbackToSystemLocale" value="false" />
 	</bean>
 </beans>
 
