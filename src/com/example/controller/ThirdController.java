@@ -16,7 +16,11 @@ public class ThirdController {
 	@RequestMapping(value="/home2")
 	public String testMethodForJdbcTemplate(Model model) {
 		UserObj user = userService.getUser("Procopio");
-		model.addAttribute("message", user.getUsername());
+		
+		UserObj differentUser = userService.getUserDifferently("Issa");
+		
+		model.addAttribute("message", user.getUsername() + " " +differentUser);
+
 		return "destination";
 	}
 

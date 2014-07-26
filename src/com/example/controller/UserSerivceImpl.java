@@ -16,4 +16,10 @@ public class UserSerivceImpl implements UserService {
 		return userDao.getUser(username);
 	}
 
+	@Override
+	public UserObj getUserDifferently(String username) {
+		// TODO Auto-generated method stub
+		return userDao.getUserDifferently(username);
+	}
+
 }
