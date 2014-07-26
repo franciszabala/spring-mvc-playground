@@ -25,7 +25,7 @@ public class UserDaoJdbcTemplateImpl implements UserDao {
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	private NamedParameterJdbcTemplate jdbcNamedTemplate;
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Override
 	public UserObj getUser(String username) {
@@ -51,7 +51,7 @@ public class UserDaoJdbcTemplateImpl implements UserDao {
 		SqlParameterSource namedParameters = new MapSqlParameterSource(
 				"username", username);
 
-		return jdbcNamedTemplate.queryForObject(query, namedParameters,
+		return namedParameterJdbcTemplate.queryForObject(query, namedParameters,
 				new RowMapper() {
 					public Object mapRow(ResultSet rs, int rowNum)
 							throws SQLException, DataAccessException {

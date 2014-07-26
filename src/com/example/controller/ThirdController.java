@@ -19,7 +19,7 @@ public class ThirdController {
 		
 		UserObj differentUser = userService.getUserDifferently("Issa");
 		
-		model.addAttribute("message", user.getUsername() + " " +differentUser);
+		model.addAttribute("message", user.getUsername() + " " +differentUser.getUsername());
 
 		return "destination";
 	}
